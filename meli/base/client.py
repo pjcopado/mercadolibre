@@ -31,10 +31,10 @@ class Client(BaseClient):
         self,
         account="default",
         marketplace: Marketplaces = Marketplaces[
-            os.environ["AD_API_DEFAULT_MARKETPLACE"]
+            os.environ["MELI_API_DEFAULT_MARKETPLACE"]
         ]
-        if "AD_API_DEFAULT_MARKETPLACE" in os.environ
-        else Marketplaces.EU,
+        if "MELI_API_DEFAULT_MARKETPLACE" in os.environ
+        else Marketplaces.MLA,
         credentials=None,
         proxies=None,
         verify=True,
@@ -61,8 +61,8 @@ class Client(BaseClient):
     def headers(self):
         return {
             "User-Agent": self.user_agent,
-            "Amazon-Advertising-API-ClientId": self.credentials.client_id,
-            "Authorization": "Bearer %s" % self.auth.access_token,
+            # "Amazon-Advertising-API-ClientId": self.credentials.client_id,
+            "Authorization": f"Bearer {self.auth.access_token}",
             "Content-Type": "application/json",
         }
 

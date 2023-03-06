@@ -1,12 +1,10 @@
-import urllib.parse
-
 from meli.base import Client, api_endpoint, fill_query_params, ApiResponse
 
 
 class User(Client):
     """ """
 
-    @api_endpoint("/users/{}")
+    @api_endpoint("/users/{}", method="GET")
     def get_user_by_id(self, user_id: str, **kwargs) -> ApiResponse:
         """
         get_user_by_id(self, user_id: str, **kwargs) -> ApiResponse

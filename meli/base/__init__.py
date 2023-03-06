@@ -6,10 +6,10 @@ from .marketplaces import (
     MarketplacesIds,
     Currencies,
     CurrencySymbols,
-    Locales,
 )
 from .exceptions import (
     MeliApiException,
+    MeliTypeException,
     MeliApiBadRequestException,
     MeliApiForbiddenException,
     MeliApiNotFoundException,
@@ -35,10 +35,10 @@ __all__ = [
     "MarketplacesIds",
     "Currencies",
     "CurrencySymbols",
-    "Locales",
     "fill_query_params",
     "api_endpoint",
     "MeliApiException",
+    "MeliTypeException",
     "MeliApiBadRequestException",
     "MeliApiForbiddenException",
     "MeliApiNotFoundException",

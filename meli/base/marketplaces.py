@@ -80,9 +80,6 @@ class MarketplacesIds(Enum):
 
 class Marketplaces(Enum):
 
-    token_url = "https://api.mercadolibre.com/oauth/token"
-    endpoint = "https://api.mercadolibre.com"
-
     MLA = {
         "auth_url": "https://auth.mercadolibre.com.ar",  # Argentina
         "currency": Currencies.ARS,
@@ -158,5 +155,7 @@ class Marketplaces(Enum):
     # MCU = {"auth_url": "", "currency": Currencies.CUP}  # Cuba
 
     def __init__(self, info):
+        self.token_url = "https://api.mercadolibre.com/oauth/token"
+        self.endpoint = "https://api.mercadolibre.com"
         self.auth_url = info.get("auth_url")
         self.currency = info.get("currency")

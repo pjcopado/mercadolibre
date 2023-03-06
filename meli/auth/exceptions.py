@@ -4,9 +4,9 @@ class AuthorizationError(Exception):
 
     Parameters:
 
-        error_code: str Error code from amazon auth api
+        error_code: str Error code from meli auth api
         error_msg: str Error sm
-        status_code: integer Response status code from amazon auth api
+        status_code: integer Response status code from meli auth api
     """
 
     def __init__(self, error_code, error_msg, status_code):

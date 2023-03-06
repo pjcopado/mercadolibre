@@ -1,3 +1,4 @@
+import time
 import requests
 import hashlib
 import logging
@@ -18,9 +19,9 @@ logger = logging.getLogger(__name__)
 
 
 class AccessTokenClient(BaseClient):
-    host = "api.amazon.com"
+    host = "api.mercadolibre.com"
     grant_type = "refresh_token"
-    path = "/auth/o2/token"
+    path = "/oauth/token"
 
     def __init__(
         self,
@@ -38,6 +39,15 @@ class AccessTokenClient(BaseClient):
         self.verify = verify
 
     def _request(self, url, data, headers):
+        print("------------")
+        print("url", url, type(url))
+        print("data", data)
+        print("headers", headers)
+        print("proxies", self.proxies)
+        print("verify", self.verify)
+        print("timeout", self.timeout)
+        print("------------")
+        time.sleep(0.1)
         response = requests.post(
             url,
             data=data,
@@ -46,6 +56,9 @@ class AccessTokenClient(BaseClient):
             proxies=self.proxies,
             verify=self.verify,
         )
+        time.sleep(0.1)
+        print(response.status_code)
+        print(response.json())
         response_data = response.json()
         if response.status_code != 200:
             error_message = response_data.get("error_description")

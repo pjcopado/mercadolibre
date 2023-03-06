@@ -1,3 +1,15 @@
+class MeliTypeException(Exception):
+    code = 888
+
+    def __init__(self, type, error):
+        try:
+            self.type = type
+            self.message = error
+        except IndexError:
+            pass
+        self.error = error
+
+
 class MeliApiException(Exception):
     """
     Generic Exception
@@ -158,3 +170,9 @@ def get_exception_for_code(code: int):
         503: MeliApiTemporarilyUnavailableException,
         504: MeliApiGatewayTimeoutException,
     }.get(code, MeliApiException)
+
+
+def get_exception_for_content(content: object):
+    return {"UNAUTHORIZED": MeliApiForbiddenException}.get(
+        content.get("code"), MeliApiException
+    )

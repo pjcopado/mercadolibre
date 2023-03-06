@@ -3,7 +3,7 @@ import os
 import json
 from json.decoder import JSONDecodeError
 from io import TextIOWrapper
-from meli.base import AdvertisingTypeException
+from meli.base import MeliTypeException
 
 
 class Utils:
@@ -18,38 +18,38 @@ class Utils:
                 try:
                     json.loads(body)
                 except JSONDecodeError as error:
-                    raise AdvertisingTypeException(f"{type(error)}", error)
+                    raise MeliTypeException(f"{type(error)}", error)
             else:
                 try:
                     body = json.loads(body)
                 except ValueError as error:
-                    raise AdvertisingTypeException(f"{type(error)}", error)
+                    raise MeliTypeException(f"{type(error)}", error)
                 pass
 
         if isinstance(body, dict) and wrap:
             try:
                 body = json.dumps([body])
             except TypeError as error:
-                raise AdvertisingTypeException(f"{type(error)}", error)
+                raise MeliTypeException(f"{type(error)}", error)
 
         if isinstance(body, dict) and wrap is False:
             try:
                 body = json.dumps(body)
             except TypeError as error:
-                raise AdvertisingTypeException(f"{type(error)}", error)
+                raise MeliTypeException(f"{type(error)}", error)
 
         if isinstance(body, list):
             try:
                 body = json.dumps(body)
             except TypeError as error:
-                raise AdvertisingTypeException(f"{type(error)}", error)
+                raise MeliTypeException(f"{type(error)}", error)
 
         if isinstance(body, TextIOWrapper):
             body = body.read()
             try:
                 json.loads(body)
             except JSONDecodeError as error:
-                raise AdvertisingTypeException(f"{type(error)}", error)
+                raise MeliTypeException(f"{type(error)}", error)
 
         return body
 
@@ -64,8 +64,8 @@ class Utils:
 
         Args:
             throttle_by_seconds: float
-            next_token_param: str | The param amazon expects to hold the next token
-            use_rate_limit_header: if the function should try to use amazon's rate limit header
+            next_token_param: str | The param meli expects to hold the next token
+            use_rate_limit_header: if the function should try to use meli's rate limit header
             extras: additional data to be sent with NextToken, e.g `dict(QueryType='NEXT_TOKEN')` for `FulfillmentInbound`
         Returns:
             Transforms the function in a generator, returning all pages
@@ -107,8 +107,8 @@ class Utils:
 
         Args:
             throttle_by_seconds: float
-            next_token_param: str | The param amazon expects to hold the next token
-            use_rate_limit_header: if the function should try to use amazon's rate limit header
+            next_token_param: str | The param meli expects to hold the next token
+            use_rate_limit_header: if the function should try to use meli's rate limit header
             extras: additional data to be sent with NextToken, e.g `dict(QueryType='NEXT_TOKEN')` for `FulfillmentInbound`
         Returns:
             Transforms the function in a generator, returning all pages
