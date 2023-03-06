@@ -1,9 +1,10 @@
 import os
 import dotenv
 
-dotenv.load_dotenv()
 from meli.api.user import User
 from meli.base.marketplaces import Marketplaces
+
+dotenv.load_dotenv()
 
 CLIENT_ID = os.environ.get("MELI_CLIENT_ID")
 CLIENT_SECRET = os.environ.get("MELI_CLIENT_SECRET")
