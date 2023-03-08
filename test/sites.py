@@ -1,7 +1,7 @@
 import os
 import dotenv
 
-from meli.api.user import User
+from meli.api.sites import Sites
 from meli.base.marketplaces import Marketplaces
 
 dotenv.load_dotenv()
@@ -17,11 +17,11 @@ CREDENTIALS = {
     "refresh_token": REFRESH_TOKEN,
 }
 
-res = User(credentials=CREDENTIALS, marketplace=Marketplaces.MLA)
+res = Sites(credentials=CREDENTIALS, marketplace=Marketplaces.MLA)
 
-# response = res.get_by_id(user_id="829069618")
-# response = res.get_logged_user_info()
-# response = res.get_addresses(user_id="829069618")
-# response = res.get_accepted_payment_methods(user_id="829069618")
-response = res.get_brands(user_id="829069618")
+# response = res.get_all()
+# response = res.get_site_domain_by_id(domain_id="mercadolibre.com.ar")
+# response = res.get_site_listing_types(site_id="MLA")
+response = res.get_site_listing_prices(site_id="MLA", price=1000)
+
 print(response)

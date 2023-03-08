@@ -400,4 +400,6 @@ class Client(BaseClient):
         headers = vars(res).get("headers")
         status_code = vars(res).get("status_code")
         next_token = vars(res).get("_next")
-        return ApiResponse(data, next_token, headers=headers)
+        return ApiResponse(
+            status=status_code, payload=data, nextToken=next_token, headers=headers
+        )

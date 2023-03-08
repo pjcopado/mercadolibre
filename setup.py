@@ -9,7 +9,7 @@ setup(
     url="https://github.com/pjcopado/mercadolibre",
     keywords="development, setup, setuptools",
     python_requires=">=3.7, <4",
-    # packages=find_packages(include=['exampleproject', 'exampleproject.*']),
+    # packages=find_packages(include=['exampleproject', 'exampleproject.*']),git
     # install_requires=[
     #     'PyYAML',
     #     'pandas==0.23.3',
